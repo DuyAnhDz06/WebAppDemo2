@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebAppDemo2.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .table>:not(:last-child)>:last-child>* {
+    border-bottom-color: currentColor;
+    background-color: #15375a;
+    text-align: center;
+    color: #FFF;
+}
+
+    .table td, .table th {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    text-align: center;
+
+    }
+</style>
+<h1 style="color:orangered">All Users</h1>
+
+<p>
+    <a class="btn btn-outline-warning" asp-action="Create">Create New</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                    
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.UserId">Edit</a> 
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.UserId">Details</a> 
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
